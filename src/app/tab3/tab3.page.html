@@ -1,0 +1,274 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tab 3
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 3</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>Personal Details</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <form [formGroup]="personalDetailsForm" (ngSubmit)="personalDetailsForm.valid && onSubmit()">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" size-md="6" size-lg="4">
+                <ion-item fill="outline">
+                  <ion-label position="floating">First Name</ion-label>
+                  <ion-input formControlName="firstName" placeholder="Enter text"></ion-input>
+                </ion-item>
+                <ion-text *ngIf="!personalDetailsForm.get('firstName').valid && personalDetailsForm.get('firstName').touched"
+                  color="danger">First Name is Required</ion-text>
+              </ion-col>
+              <ion-col size="12" size-md="6" size-lg="4">
+                <ion-item fill="outline">
+                  <ion-label position="floating">Last Name</ion-label>
+                  <ion-input formControlName="lastName" placeholder="Enter text"></ion-input>
+                </ion-item>
+                <ion-text *ngIf="!personalDetailsForm.get('lastName').valid && personalDetailsForm.get('lastName').touched"
+                  color="danger">Last Name is Required</ion-text>
+              </ion-col>
+              <ion-col size="12" size-md="6" size-lg="4">
+                <ion-item fill="outline">
+                  <ion-label position="floating">Email</ion-label>
+                  <ion-input formControlName="Email" placeholder="Enter text" type="email"></ion-input>
+                </ion-item>
+                <ion-text *ngIf="!personalDetailsForm.get('Email').valid && personalDetailsForm.get('Email').touched"
+                  color="danger">Email is Required</ion-text>
+              </ion-col>
+              <ion-col size="12" size-md="6" size-lg="4">
+                <ion-item fill="outline">
+                  <ion-label position="floating">Date Of Birth</ion-label>
+                  <ion-input formControlName="dateOfBirth" placeholder="Enter text" type="date"></ion-input>
+                </ion-item>
+                <ion-text *ngIf="!personalDetailsForm.get('dateOfBirth').valid && personalDetailsForm.get('dateOfBirth').touched"
+                  color="danger">Date Of Birth is Required</ion-text>
+              </ion-col>
+              <ion-col size="12" size-md="6" size-lg="4">
+                <ion-item fill="outline">
+                  <ion-label position="floating">Mobile Number</ion-label>
+                  <ion-input formControlName="mobileNumber" placeholder="Enter text"></ion-input>
+                </ion-item>
+                <ion-text *ngIf="!personalDetailsForm.get('mobileNumber').valid && personalDetailsForm.get('mobileNumber').touched"
+                  color="danger">Mobile Number is Required</ion-text>
+              </ion-col>
+              <ion-col size="12" size-md="6" size-lg="4">
+                <ion-item fill="outline">
+                  <ion-label position="floating">WhatsApp Number</ion-label>
+                  <ion-input formControlName="whatsAppNumber" placeholder="Enter text"></ion-input>
+                </ion-item>
+                <ion-text
+                  *ngIf="!personalDetailsForm.get('whatsAppNumber').valid && personalDetailsForm.get('whatsAppNumber').touched"
+                  color="danger">WhatsApp Number is Required</ion-text>
+              </ion-col>
+              <ion-col size="12" size-md="6" size-lg="4">
+                <ion-list>
+                  <ion-item>
+                    <ion-select formControlName="personalType" interface="popover" placeholder="Type">
+                      <ion-select-option value="Maharaj">Maharaj</ion-select-option>
+                      <ion-select-option value="Volunter">Volunter</ion-select-option>
+                      <ion-select-option value="Devotee">Devotee</ion-select-option>
+                      <ion-select-option value="Student">Student</ion-select-option>
+                      <ion-select-option value="Others">Others</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+                <ion-text *ngIf="!personalDetailsForm.get('personalType').valid && personalDetailsForm.get('personalType').touched"
+                  color="danger">Type is Required</ion-text>
+              </ion-col>
+              <ion-col size="12" size-md="6" size-lg="8">
+                <ion-item fill="outline">
+                  <ion-label position="floating">Address</ion-label>
+                  <ion-textarea formControlName="address" placeholder="Enter text" type="textarea"></ion-textarea>
+                </ion-item>
+                <ion-text *ngIf="!personalDetailsForm.get('address').valid && personalDetailsForm.get('address').touched"
+                  color="danger">Address is Required</ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-button type="submit" [disabled]="personalDetailsForm.invalid">
+            Submit
+          </ion-button>
+        </form>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>Travel</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <input id="travelhide" name="travel" type="radio" (click)="travelhide()">&nbsp;
+        <label for="travelhide">Own</label>&nbsp;&nbsp;
+        <input id="travelshow" name="travel" type="radio" (click)="travelshow()">&nbsp;
+        <label for="travelshow">Need To Arrange</label><br><br>
+        <ng-container *ngIf="travelHideShow">
+          <form [formGroup]="slideOneForm" (ngSubmit)="slideOneForm.valid && onSubmit()">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12" size-md="6" size-lg="3">
+                  <ion-item fill="outline">
+                    <ion-label position="floating">From</ion-label>
+                    <ion-input formControlName="travelFrom" placeholder="Enter text"></ion-input>
+                  </ion-item>
+                  <ion-text *ngIf="!slideOneForm.get('travelFrom').valid && slideOneForm.get('travelFrom').touched"
+                    color="danger">From is Required</ion-text>
+                </ion-col>
+                <ion-col size="12" size-md="6" size-lg="3">
+                  <ion-item fill="outline">
+                    <ion-label position="floating">To</ion-label>
+                    <ion-input formControlName="travelTo" placeholder="Enter text"></ion-input>
+                  </ion-item>
+                  <ion-text *ngIf="!slideOneForm.get('travelTo').valid && slideOneForm.get('travelTo').touched"
+                    color="danger">To is Required</ion-text>
+                </ion-col>
+                <ion-col size="12" size-md="6" size-lg="3">
+                  <ion-item fill="outline">
+                    <ion-label position="floating">Date</ion-label>
+                    <ion-input formControlName="travelDate" placeholder="Enter text" type="date"></ion-input>
+                  </ion-item>
+                  <ion-text *ngIf="!slideOneForm.get('travelDate').valid && slideOneForm.get('travelDate').touched"
+                    color="danger">Date is Required</ion-text>
+                </ion-col>
+                <ion-col size="12" size-md="6" size-lg="3">
+                  <ion-list>
+                    <ion-item>
+                      <ion-select formControlName="travelType" interface="popover" placeholder="Type">
+                        <ion-select-option value="Flight">Flight</ion-select-option>
+                        <ion-select-option value="Train">Train</ion-select-option>
+                        <ion-select-option value="Bus">Bus</ion-select-option>
+                        <ion-select-option value="Cab">Cab</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-list>
+                  <ion-text *ngIf="!slideOneForm.get('travelType').valid && slideOneForm.get('travelType').touched"
+                    color="danger">Type is Required</ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-button type="submit" [disabled]="slideOneForm.invalid">
+              Submit
+            </ion-button>
+          </form>
+        </ng-container>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <ion-accordion-group id="demo">
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>Stay</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <input id="stayhide" name="stay" type="radio" (click)="stayhide()">&nbsp;
+        <label for="stayhide">Own</label>&nbsp;&nbsp;
+        <input id="stayshow" name="stay" type="radio" (click)="stayshow()">&nbsp;
+        <label for="stayshow">Need To Arrange</label><br><br>
+        <ng-container *ngIf="stayHideShow">
+          <form [formGroup]="slideTwoForm " (ngSubmit)="slideTwoForm.valid && onSubmit()">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-list>
+                    <ion-item>
+                      <ion-select interface="popover" formControlName="stayType" placeholder="Guest House">
+                        <ion-select-option value="Sivanandha">Sivanandha Hostel</ion-select-option>
+                        <ion-select-option value="Maruthi">Maruthi Hostel</ion-select-option>
+                        <ion-select-option value="RKMVERI">RKMVERI Hostel</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-list>
+                  <ion-text *ngIf="!slideTwoForm.get('stayType').valid && slideTwoForm.get('stayType').touched"
+                    color="danger">Stay From is Required</ion-text>
+                </ion-col>
+                <ion-col>
+                  <ion-list>
+                    <ion-item>
+                      <ion-select interface="popover" formControlName="stayRooms" placeholder="Rooms">
+                        <ion-select-option value="Rooms">10 Rooms Are Available</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-list>
+                  <ion-text *ngIf="!slideTwoForm.get('stayRooms').valid && slideTwoForm.get('stayRooms').touched"
+                    color="danger">Stay To is Required</ion-text>
+                </ion-col>
+                <ion-col>
+                  <ion-item fill="outline">
+                    <ion-label position="floating">From</ion-label>
+                    <ion-input formControlName="inDate" placeholder="Enter text" type="date"></ion-input>
+                  </ion-item>
+                  <ion-text *ngIf="!slideTwoForm.get('inDate').valid && slideTwoForm.get('inDate').touched"
+                    color="danger">From is Required</ion-text>
+                </ion-col>
+                <ion-col>
+                  <ion-item fill="outline">
+                    <ion-label position="floating">To</ion-label>
+                    <ion-input formControlName="outDate" placeholder="Enter text" type="date"></ion-input>
+                  </ion-item>
+                  <ion-text *ngIf="!slideTwoForm.get('outDate').valid && slideTwoForm.get('outDate').touched"
+                    color="danger">To is Required</ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-button type="submit" [disabled]="slideTwoForm.invalid">
+              Submit
+            </ion-button>
+          </form>
+        </ng-container>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>Support</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <input id="supporthide" name="support" type="radio" (click)="supporthide()">&nbsp;
+        <label for="supporthide">Own</label>&nbsp;&nbsp;
+        <input id="supportshow" name="support" type="radio" (click)="supportshow()">&nbsp;
+        <label for="supportshow">Need To Arrange</label><br><br>
+        <ng-container *ngIf="supportHideShow">
+          <form>
+            <input id="Supporthide" name="Support" type="radio">&nbsp;
+            <label for="Supporthide">Driver</label><br>
+            <input id="Staffshow" name="Support" type="radio">&nbsp;
+            <label for="Staffshow">Staff</label><br>
+            <input id="Supportshow" name="Support" type="radio">&nbsp;
+            <label for="Supportshow">Student</label>
+          </form>
+          <!-- <form [formGroup]="slideThreeForm " (ngSubmit)="slideTwoForm.valid && onSubmit()">
+            <input formControlName="SupportDriver" id=" Supporthide" name="Support" type="radio">&nbsp;
+            <label for="Supporthide">Driver</label><br>
+            <input formControlName="supportStaff" id="Staffshow" name="Support" type="radio">&nbsp;
+            <label for="Staffshow">Staff</label><br>
+            <input formControlName="supportStudent" id="Supportshow" name="Support" type="radio">&nbsp;
+            <label for="Supportshow">Student</label><br>
+            <ion-button type="submit" [disabled]="slideThreeForm.invalid">
+              Submit
+            </ion-button>
+          </form> -->
+        </ng-container>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+  <!-- <span>Active : &nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <input id="Activehide" name="Active" type="radio">&nbsp;
+  <label for="Activehide">Own</label>&nbsp;&nbsp;
+  <input id="Activeshow" name="Active" type="radio">&nbsp;
+  <label for="Activeshow">Need To Arrange</label> -->
+
+</ion-content>
